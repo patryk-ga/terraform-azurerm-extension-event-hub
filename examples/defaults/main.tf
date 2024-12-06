@@ -27,6 +27,8 @@ resource "azuread_group" "reader_group" {
 }
 
 resource "azurerm_eventhub_namespace" "namespace" {
+  provider = azurerm.eventhub
+
   name                = "namespace"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
@@ -35,6 +37,10 @@ resource "azurerm_eventhub_namespace" "namespace" {
 
 module "defaults" {
   source = "../../src"
+  providers = {
+    azurerm          = azurerm
+    azurerm.eventhub = azurerm.eventhub
+  }
 
   # global
   service_principal_object_id = azuread_service_principal.sp.object_id

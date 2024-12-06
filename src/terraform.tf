@@ -3,6 +3,10 @@ terraform {
 
   required_providers {
     azurerm = {
+      configuration_aliases = [
+        azurerm,
+        azurerm.eventhub
+      ]
       source  = "hashicorp/azurerm"
       version = "3.116.0"
     }

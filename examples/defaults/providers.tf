@@ -13,5 +13,10 @@ terraform {
 }
 
 provider "azurerm" {
+  alias = "eventhub"
+  features {}
+}
+
+provider "azurerm" {
   features {}
 }
